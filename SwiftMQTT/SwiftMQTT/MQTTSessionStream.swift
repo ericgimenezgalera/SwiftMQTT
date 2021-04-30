@@ -54,9 +54,8 @@ class MQTTSessionStream: NSObject {
             inputStream?.open()
             outputStream?.open()
             if ssl {
-                let securityLevel = StreamSocketSecurityLevel.negotiatedSSL.rawValue
-                inputStream?.setProperty(securityLevel, forKey: .socketSecurityLevelKey)
-                outputStream?.setProperty(securityLevel, forKey: .socketSecurityLevelKey)
+                inputStream?.setProperty("mqtt", forKey: .socketSecurityLevelKey)
+                outputStream?.setProperty("mqtt", forKey: .socketSecurityLevelKey)
             }
             if timeout > 0 {
                 DispatchQueue.global().asyncAfter(deadline: .now() +  timeout) {
